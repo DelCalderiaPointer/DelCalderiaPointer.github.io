@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="viewport" content="width=1040, initial-scale=0.4, maximum-scale=0.4, user-scalable=no">
 <title>Del Caria - Pointer Soy Kütüğü</title>
 <style>
 :root{--green:#315b24;--green2:#397d43;--cream:#f4f5ef;--dark:#1f2a1b;--line:#dfe5d9}
@@ -374,6 +374,7 @@ go(0);
 /* FINAL: preserve the approved wide desktop-style canvas on phones too. */
 html,body{min-width:0;overflow:hidden;}
 @media (max-width:1100px){
+  /* On phones, keep the exact wide desktop canvas and let the browser scale it down to fit. */
   html,body{width:1040px;min-width:1040px;}
   .top{width:1040px;right:auto;}
   .topin{max-width:none;width:1040px;padding:14px 24px;}
