@@ -52,6 +52,13 @@ p{line-height:1.65}
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 .card{background:#fff;border:1px solid #e4e8df;border-left:3px solid var(--green);border-radius:10px;padding:18px;box-shadow:0 4px 15px rgba(0,0,0,.04)}
 .card h3{margin:8px 0;font-size:16px}
+.card.photo-card{padding:0;overflow:hidden;position:relative;height:190px;border-left:3px solid var(--green);color:#fff;background:#222}
+.card.photo-card .card-photo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.card.photo-card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.02) 30%,rgba(0,0,0,.72) 100%);pointer-events:none}
+.card.photo-card .card-overlay{position:absolute;z-index:2;left:18px;right:18px;bottom:15px}
+.card.photo-card h3{margin:0 0 6px;font-size:18px;color:#fff}
+.card.photo-card .meta{color:#fff;font-size:14px}
+.card.photo-card .badge{position:absolute;z-index:2;top:14px;right:14px;color:#fff}
 .meta{font-size:14px;line-height:1.7;color:#687066}
 .badge{font-size:14px;color:var(--green)}
 
@@ -358,7 +365,13 @@ const pedigree = [
 ];
 
 function render(list){
- document.getElementById('dogs').innerHTML=list.map(d=>`<article class="card" data-dog="${d[0]}" role="button" tabindex="0" style="cursor:pointer"><span class="badge">${d[1]}</span><h3>${d[0]}</h3><div class="meta">Doğum: ${d[2]}</div></article>`).join('');
+ document.getElementById('dogs').innerHTML=list.map(d=>{
+   const img=dogImages[d[0]];
+   if(d[0]==='AITOR DEL CARIA' && img){
+     return `<article class="card photo-card" data-dog="${d[0]}" role="button" tabindex="0" style="cursor:pointer"><img class="card-photo" src="${img}" alt="${d[0]}"><span class="badge">${d[1]}</span><div class="card-overlay"><h3>${d[0]}</h3><div class="meta">Doğum: ${d[2]}</div></div></article>`;
+   }
+   return `<article class="card" data-dog="${d[0]}" role="button" tabindex="0" style="cursor:pointer"><span class="badge">${d[1]}</span><h3>${d[0]}</h3><div class="meta">Doğum: ${d[2]}</div></article>`;
+ }).join('');
  document.querySelectorAll('#dogs .card').forEach(card=>{
    const open=()=>openDogProfile(card.dataset.dog);
    card.addEventListener('click',open);
