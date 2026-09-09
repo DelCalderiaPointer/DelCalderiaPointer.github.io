@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Del Calderia Pointer</title>
+<style>
+:root{
+  --green:#315b24; --light:#f4f5ef; --dark:#1f2a1b; --gold:#b59658;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--light);color:#222}
+header{
+  background:linear-gradient(135deg,#1d3517,#426c31);
+  color:white;padding:55px 20px;text-align:center;
+}
+header h1{margin:0;font-size:clamp(34px,7vw,68px);letter-spacing:2px}
+header p{margin:12px 0 0;color:#e6eadf;font-size:18px}
+nav{background:white;box-shadow:0 2px 12px #0002;position:sticky;top:0;z-index:5}
+nav .inner{max-width:1100px;margin:auto;display:flex;gap:8px;justify-content:center;flex-wrap:wrap;padding:10px}
+nav a{color:var(--green);text-decoration:none;padding:10px 16px;border-radius:8px;font-weight:bold}
+nav a:hover{background:#edf1e9}
+main{max-width:1100px;margin:auto;padding:30px 18px}
+.hero{background:white;border-radius:18px;padding:30px;box-shadow:0 5px 20px #00000012;margin-bottom:28px}
+.hero h2{color:var(--green);margin-top:0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:20px}
+.stat{background:#eef2e9;border-radius:12px;padding:18px;text-align:center}
+.stat b{display:block;font-size:28px;color:var(--green)}
+.search{width:100%;padding:14px;border:1px solid #ccd2c7;border-radius:10px;font-size:16px;margin:10px 0 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.card{background:white;border-radius:14px;padding:20px;box-shadow:0 4px 15px #00000010;border-left:4px solid var(--green)}
+.card h3{margin:0 0 10px;color:var(--green);font-size:18px}
+.meta{color:#666;line-height:1.6}
+.badge{display:inline-block;background:#edf2e9;color:var(--green);padding:4px 8px;border-radius:20px;font-size:12px;font-weight:bold}
+#pedigree{min-height:180px}
+.tree{display:flex;justify-content:center;align-items:center;gap:25px;flex-wrap:wrap;margin-top:20px}
+.node{background:white;border:2px solid #d7decf;border-radius:12px;padding:14px 20px;min-width:180px;text-align:center}
+.node.main{border-color:var(--green);background:#f0f5ec;font-weight:bold}
+footer{margin-top:40px;background:var(--dark);color:#dfe7d9;text-align:center;padding:28px}
+@media(max-width:650px){.stats{grid-template-columns:1fr}.hero{padding:22px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>DEL CALDERIA POINTER</h1>
+  <p>Pointer Soy Kütüğü &amp; Köpek Arşivi</p>
+</header>
+
+<nav>
+  <div class="inner">
+    <a href="#anasayfa">Ana Sayfa</a>
+    <a href="#kopekler">Köpekler</a>
+    <a href="#soy">Soy Kütüğü</a>
+  </div>
+</nav>
+
+<main>
+<section id="anasayfa" class="hero">
+  <h2>Del Calderia Pointer</h2>
+  <p>Pointer köpeklerinin geçmişini, kayıt bilgilerini ve aile bağlarını düzenli şekilde saklamak için oluşturulan soy kütüğü arşivi.</p>
+  <div class="stats">
+    <div class="stat"><b>19</b>Kayıtlı Köpek</div>
+    <div class="stat"><b>♂ / ♀</b>Erkek &amp; Dişi</div>
+    <div class="stat"><b>SOY</b>Anne-Baba Bağlantıları</div>
+  </div>
+</section>
+
+<section id="kopekler" class="hero">
+  <h2>Köpek Arşivi</h2>
+  <input id="search" class="search" placeholder="Köpek adı veya kayıt numarası ara...">
+  <div id="dogs" class="grid"></div>
+</section>
+
+<section id="soy" class="hero">
+  <h2>Soy Kütüğü</h2>
+  <p>Anne ve baba bilgileri belirlendikçe bu bölümde aile ağacı oluşturulacak.</p>
+  <div class="tree">
+    <div class="node">Baba<br><span class="meta">Henüz belirlenmedi</span></div>
+    <div class="node main">Yavru<br><span class="meta">Soy bağlantısı eklenecek</span></div>
+    <div class="node">Anne<br><span class="meta">Henüz belirlenmedi</span></div>
+  </div>
+</section>
+</main>
+
+<footer>© Del Calderia Pointer — Soy Kütüğü Arşivi</footer>
+
+<script>
+const dogs = [
+["MOSE' DEL SARGIADAE","♂","02.10.2010","LOI L010174639"],
+["ADMIRAL DEL SARGIADAE","♂","16.01.2007","LOI L00757556"],
+["INDIANA DEL SARGIADAE","♀","31.10.2002","LOI L0035161"],
+["ZEN DEL FELTRINO","♂","30.10.2003","LOI L00437331"],
+["JAGA","♀","20.02.1998","LOF 98137098"],
+["MILORD DI GROPPO","♂","25.05.1995","LOI PT190625"],
+["FANNI' DEL NOCINO","♀","27.08.1999","LOI L0009"],
+["RIBOT DELLA NOCE","♂","25.04.1995","LOI PT189608"],
+["GLENDA","♀","08.07.2000","LOI L00144618"],
+["HARDY DU BOIS DES PERCHES","♂","10.08.1992","LOF 986375"],
+["TESS","♀","01.05.1994","LOI PT186111"],
+["IALA DEL CELO","♀","16.08.1991","LOI PT173525"],
+["CLASTIDIUM FAUNO","♂","15.03.1993","LOI PT180209"],
+["ROMINA","♀","—","LOI PT198497"],
+["CARIDDI DEL VENTO","♂","22.11.1987","LOI PT153233"],
+["EDY","♀","04.08.1991","LOI PT171935"],
+["EUGUBIUM FULL","♂","02.07.1995","LOI PT191588"],
+["TIBET DE LA LEMBAZ","♂","18.01.1982","SHSB348366"],
+["FAONA DES BUVEURS D'AIR","♀","20.07.1990","LOF 64444/10164"]
+];
+
+function render(list){
+  document.getElementById("dogs").innerHTML=list.map(d=>`
+    <article class="card">
+      <span class="badge">${d[1]}</span>
+      <h3>${d[0]}</h3>
+      <div class="meta">Doğum: ${d[2]}<br>Kayıt: ${d[3]}</div>
+    </article>`).join("");
+}
+render(dogs);
+document.getElementById("search").addEventListener("input",e=>{
+  const q=e.target.value.toLowerCase();
+  render(dogs.filter(d=>d.join(" ").toLowerCase().includes(q)));
+});
+</script>
+</body>
+</html>
